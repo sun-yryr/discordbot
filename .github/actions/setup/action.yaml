@@ -1,0 +1,16 @@
+name: Setup project
+description: Setup this project
+
+runs:
+  using: composite
+  steps:
+    -
+      uses: pnpm/action-setup@v2
+    -
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: pnpm
+    -
+      shell: bash
+      run: pnpm install

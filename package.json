@@ -1,0 +1,23 @@
+{
+  "name": "discordbot",
+  "version": "0.0.0",
+  "private": "true",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "lint:gha": "eslint \".github/**/*.y*ml\""
+  },
+  "author": "sun-yryr <me@sun-yryr.com>",
+  "packageManager": "pnpm@8.8.0",
+  "engines": {
+    "node": "18"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.2.2",
+    "env-cmd": "^10.1.0",
+    "eslint": "^8.51.0",
+    "eslint-plugin-yml": "^1.10.0",
+    "yaml-eslint-parser": "^1.2.2"
+  }
+}

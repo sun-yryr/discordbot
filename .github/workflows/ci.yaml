@@ -1,0 +1,62 @@
+name: ci
+on:
+  push:
+    branches:
+      - main
+  pull_request: null
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: [downloader]
+    steps:
+      -
+        uses: actions/checkout@v4
+      -
+        name: Setup
+        uses: ./.github/actions/setup
+      -
+        name: Check by biome (${{ matrix.package }})
+        run: pnpm biome ci ./src
+        working-directory: ${{ matrix.package }}
+  
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: [downloader]
+    steps:
+      -
+        uses: actions/checkout@v4
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Build
+        uses: docker/build-push-action@v5
+        with:
+          push: false
+          tags: sun-yryr/discordbot-${{ matrix.package }}:latest
+          target: ${{ matrix.package }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  lint-gha:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        uses: actions/checkout@v4
+      -
+        uses: technote-space/git-diff-action@v6
+        with:
+          PATTERNS: .github/(actions|workflows)/*.ya?ml
+      -
+        if: env.GIT_DIFF || github.event_name == 'push'
+        name: Setup
+        uses: ./.github/actions/setup
+      -
+        if: env.GIT_DIFF || github.event_name == 'push'
+        name: Lint
+        run: pnpm run lint:gha

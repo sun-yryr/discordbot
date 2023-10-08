@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "../../biome.base.json"
+  ],
+  "files": {
+    "ignore": [
+      "*.json"
+    ]
+  }
+}

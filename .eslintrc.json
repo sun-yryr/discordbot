@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "plugin:yml/standard"
+  ],
+  "parser": "yaml-eslint-parser",
+  "rules": {
+    "yml/block-sequence-hyphen-indicator-newline": [
+      "error",
+      "never",
+      {
+        "blockMapping": "always"
+      }
+    ]
+  }
+}

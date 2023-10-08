@@ -1,0 +1,27 @@
+{
+  "name": "@discordbot/downloader",
+  "version": "0.1.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "env-cmd -f ../../.env ts-node src/main.ts",
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "check": "biome check ./src",
+    "fix": "biome check --apply-unsafe ./src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.18.0",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "discord.js": "^14.13.0",
+    "yt-dlp-wrap": "^2.3.12"
+  }
+}
