@@ -1,0 +1,30 @@
+name: Release
+on:
+  workflow_run:
+    workflows: [ci]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+  packages: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        uses: actions/checkout@v4
+      -
+        name: Setup
+        uses: ./.github/actions/setup
+      -
+        name: Create Release Pull Request or Check for publishability
+        id: changesets
+        uses: changesets/action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      -
+        name: Publish
+        run: echo ${{ toJson(steps.changesets.outputs) }}
