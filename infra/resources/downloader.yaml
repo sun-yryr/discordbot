@@ -35,16 +35,17 @@ spec:
               value: '/downloads'
           volumeMounts:
             - mountPath: /downloads
-              name: sync_download_volume
+              name: sync-download-volume
         - name: sync
           image: ubuntu:22.04
+          command: [sleep, infinity]
           resources:
             limits:
               memory: "128Mi"
               cpu: "200m"
           volumeMounts:
             - mountPath: /downloads
-              name: sync_download_volume
+              name: sync-download-volume
       volumes:
-        - name: sync_download_volume
+        - name: sync-download-volume
           emptyDir: {}
