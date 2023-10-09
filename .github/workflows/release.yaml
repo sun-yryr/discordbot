@@ -6,8 +6,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
   packages: write
 
 jobs:
@@ -24,11 +23,17 @@ jobs:
         name: Setup
         uses: ./.github/actions/setup
       -
+        id: create_token
+        uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2.1.0
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+      -
         name: Create Release Pull Request or Check for publishability
         id: changesets
         uses: changesets/action@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.create_token.outputs.token }}
         with:
           commit: "chore: Release packages"
           title: ":tada: Release packages"
