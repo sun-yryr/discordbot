@@ -16,6 +16,7 @@ jobs:
     outputs:
       published: ${{ steps.changesets.outputs.published }}
       publishedPackages: ${{ steps.changesets.outputs.publishedPackages }}
+      hasChangesets: ${{ steps.changesets.outputs.hasChangesets }}
     steps:
       -
         uses: actions/checkout@v4
@@ -41,10 +42,11 @@ jobs:
         with:
           commit: "chore: Release packages"
           title: ":tada: Release packages"
-          publish: pnpm run ci:publish
+          publish: pnpm changeset publish
       -
         name: Debug outputs
         run: echo "${{ toJson(steps.changesets.outputs) }}"
+
   release-image:
     runs-on: ubuntu-latest
     needs: changesets
