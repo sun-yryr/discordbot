@@ -31,18 +31,12 @@ jobs:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
       -
-        name: Create .npmrc
-        run: |
-          cat <<EOF > "$HOME/.npmrc"
-          //npm.pkg.github.com/:_authToken=${{ steps.create_token.outputs.token }}
-          @sun-yryr:registry=https://npm.pkg.github.com/
-          EOF
-      -
         name: Create Release Pull Request or Check for publishability
         id: changesets
         uses: changesets/action@v1
         env:
           GITHUB_TOKEN: ${{ steps.create_token.outputs.token }}
+          NODE_AUTH_TOKEN: ${{ steps.create_token.outputs.token }}
         with:
           commit: "chore: Release packages"
           title: ":tada: Release packages"
