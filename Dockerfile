@@ -17,7 +17,7 @@ RUN pnpm --filter downloader deploy --prod deploy/downloader
 # ------------------------------------------------------------------------------
 # Production Images
 # ------------------------------------------------------------------------------
-FROM jauderho/yt-dlp:2023.10.07 as downloader
+FROM jauderho/yt-dlp:2023.10.07 as discordbot-downloader
 COPY --from=builder /usr/local/bin/node /usr/local/bin/node
 COPY --from=builder /app/deploy/downloader/package.json /app/packages/downloader/package.json
 COPY --from=builder /app/deploy/downloader/node_modules /app/packages/downloader/node_modules

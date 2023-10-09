@@ -1,5 +1,5 @@
 {
-  "name": "@discordbot/downloader",
+  "name": "@sun-yryr/discordbot-downloader",
   "version": "0.0.1",
   "type": "module",
   "main": "dist/main.js",
@@ -8,7 +8,8 @@
     "build": "tsc",
     "start": "node dist/main.js",
     "check": "biome check ./src",
-    "fix": "biome check --apply-unsafe ./src"
+    "fix": "biome check --apply-unsafe ./src",
+    "ci": "biome ci ./src"
   },
   "devDependencies": {
     "@types/node": "^18.18.0",
