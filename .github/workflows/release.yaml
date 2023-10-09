@@ -58,6 +58,9 @@ jobs:
       group: ${{ matrix.name }}
     steps:
       -
+        run: |
+          echo "${{ toJson(matrix) }}"
+      -
         name: format package name
         id: format-package-name
         # package 名を変換する (@sun-yryr/xxx -> xxx)
