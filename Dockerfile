@@ -23,5 +23,6 @@ COPY --from=builder /app/deploy/downloader/package.json /app/packages/downloader
 COPY --from=builder /app/deploy/downloader/node_modules /app/packages/downloader/node_modules
 COPY --from=builder /app/deploy/downloader/dist /app/packages/downloader/dist
 WORKDIR /app/packages/downloader
+ENV YT_DLP_PATH=/usr/local/bin/yt-dlp
 ENTRYPOINT ["node"]
 CMD ["dist/main.js"]
