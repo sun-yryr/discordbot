@@ -13,6 +13,7 @@ permissions:
 jobs:
   changesets:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     outputs:
       published: ${{ steps.changesets.outputs.published }}
       publishedPackages: ${{ steps.changesets.outputs.publishedPackages }}
@@ -38,6 +39,8 @@ jobs:
     strategy:
       matrix:
         include: ${{ fromJson(needs.changesets.outputs.publishedPackages) }}
+    concurrency:
+      group: ${{ matrix.package }}
     steps:
       -
         name: format package name
