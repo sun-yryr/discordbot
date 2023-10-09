@@ -58,8 +58,8 @@ jobs:
       group: ${{ matrix.name }}
     steps:
       -
-        run: |
-          echo "${{ toJson(matrix) }}"
+        name: Input
+        run: echo "${{ toJson(matrix) }}"
       -
         name: format package name
         id: format-package-name
