@@ -1,5 +1,11 @@
 # @sun-yryr/discordbot-downloader
 
+## 0.0.4
+
+### Patch Changes
+
+- 3c95590: bump
+
 ## 0.0.3
 
 ### Patch Changes
