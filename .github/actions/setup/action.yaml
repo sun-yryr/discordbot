@@ -12,7 +12,7 @@ runs:
         node-version: 18
         cache: pnpm
         registry-url: https://npm.pkg.github.com/
-        scope: '@sun-yryr'
+        scope: "@sun-yryr"
     -
       shell: bash
       run: pnpm install
