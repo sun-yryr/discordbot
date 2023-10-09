@@ -29,6 +29,9 @@ jobs:
         uses: changesets/action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          commit: "chore: Release packages"
+          title: ":tada: Release packages"
       -
         name: Debug outputs
         run: echo "${{ toJson(steps.changesets.outputs) }}"
