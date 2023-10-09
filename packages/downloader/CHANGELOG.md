@@ -1,4 +1,4 @@
-# @discordbot/downloader
+# @sun-yryr/discordbot-downloader
 
 ## 0.0.2
 
