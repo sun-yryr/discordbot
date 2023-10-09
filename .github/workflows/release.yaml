@@ -36,8 +36,7 @@ jobs:
         uses: changesets/action@v1
         env:
           GITHUB_TOKEN: ${{ steps.create_token.outputs.token }}
-          NPM_TOKEN: ${{ steps.create_token.outputs.token }}
-          NODE_AUTH_TOKEN: ${{ steps.create_token.outputs.token }}
+          NPM_TOKEN: ${{ secrets.PAT }}
         with:
           commit: "chore: Release packages"
           title: ":tada: Release packages"
