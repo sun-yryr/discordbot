@@ -1,9 +1,8 @@
 {
   "name": "@discordbot/downloader",
   "version": "0.0.0",
-  "description": "",
   "type": "module",
-  "main": "index.js",
+  "main": "dist/main.js",
   "scripts": {
     "dev": "env-cmd -f ../../.env ts-node src/main.ts",
     "build": "tsc",
@@ -11,9 +10,6 @@
     "check": "biome check ./src",
     "fix": "biome check --apply-unsafe ./src"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@types/node": "^18.18.0",
     "ts-node": "^10.9.1",
