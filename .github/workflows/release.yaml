@@ -31,6 +31,15 @@ jobs:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
       -
+        name: Create .npmrc
+        run: |
+          cat <<EOF > .npmrc
+            //npm.pkg.github.com/:_authToken=$GITHUB_TOKEN
+            @sun-yryr:registry=https://npm.pkg.github.com/
+          EOF
+        env:
+          GITHUB_TOKEN: ${{ steps.create_token.outputs.token }}
+      -
         name: Create Release Pull Request or Check for publishability
         id: changesets
         uses: changesets/action@v1
@@ -39,6 +48,7 @@ jobs:
         with:
           commit: "chore: Release packages"
           title: ":tada: Release packages"
+          publish: pnpm run ci:publish
       -
         name: Debug outputs
         run: echo "${{ toJson(steps.changesets.outputs) }}"
@@ -55,8 +65,8 @@ jobs:
       -
         name: format package name
         id: format-package-name
-        # package 名を変換する (@discordbot/xxx -> xxx)
-        run: echo "package=${OLD_PACKAGE/@discordbot\//}" >> "$GITHUB_OUTPUT"
+        # package 名を変換する (@sun-yryr/xxx -> xxx)
+        run: echo "package=${OLD_PACKAGE/@sun-yryr\//}" >> "$GITHUB_OUTPUT"
         env:
           OLD_PACKAGE: ${{ matrix.package }}
       -
@@ -64,7 +74,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/sun-yryr/discordbot-${{ steps.format-package-name.outputs.package }}
+          images: ghcr.io/sun-yryr/${{ steps.format-package-name.outputs.package }}
           tags: |
             type=semver,pattern={{version}},value=${{ matrix.version }}
       -

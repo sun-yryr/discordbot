@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        package: [downloader]
+        package: 
+          - discordbot-downloader
     steps:
       -
         uses: actions/checkout@v4
@@ -19,14 +20,14 @@ jobs:
         uses: ./.github/actions/setup
       -
         name: Check by biome (${{ matrix.package }})
-        run: pnpm biome ci ./src
-        working-directory: packages/${{ matrix.package }}
+        run: pnpm --filter ${{ matrix.package }} run ci
   
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        package: [downloader]
+        package: 
+          - discordbot-downloader
     steps:
       -
         uses: actions/checkout@v4
@@ -38,7 +39,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: false
-          tags: sun-yryr/discordbot-${{ matrix.package }}:latest
+          tags: sun-yryr/${{ matrix.package }}:latest
           target: ${{ matrix.package }}
           cache-from: type=gha
           cache-to: type=gha,mode=max

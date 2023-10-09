@@ -12,12 +12,12 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 COPY . .
 RUN pnpm run -r build
 # Outputs standalone "node_modules" directory. This "node_modules" is not dependent on the root store
-RUN pnpm --filter downloader deploy --prod deploy/downloader
+RUN pnpm --filter discordbot-downloader deploy --prod deploy/downloader
 
 # ------------------------------------------------------------------------------
 # Production Images
 # ------------------------------------------------------------------------------
-FROM jauderho/yt-dlp:2023.10.07 as downloader
+FROM jauderho/yt-dlp:2023.10.07 as discordbot-downloader
 COPY --from=builder /usr/local/bin/node /usr/local/bin/node
 COPY --from=builder /app/deploy/downloader/package.json /app/packages/downloader/package.json
 COPY --from=builder /app/deploy/downloader/node_modules /app/packages/downloader/node_modules
