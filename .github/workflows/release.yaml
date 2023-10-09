@@ -54,8 +54,8 @@ jobs:
     strategy:
       matrix:
         include: ${{ fromJson(needs.changesets.outputs.publishedPackages) }}
-    # concurrency:
-    #   group: ${{ matrix.package }}
+    concurrency:
+      group: ${{ matrix.name }}
     steps:
       -
         name: format package name
@@ -63,7 +63,7 @@ jobs:
         # package 名を変換する (@sun-yryr/xxx -> xxx)
         run: echo "package=${OLD_PACKAGE/@sun-yryr\//}" >> "$GITHUB_OUTPUT"
         env:
-          OLD_PACKAGE: ${{ matrix.package }}
+          OLD_PACKAGE: ${{ matrix.name }}
       -
         name: Docker meta
         id: meta
