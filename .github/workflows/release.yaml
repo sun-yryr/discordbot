@@ -11,8 +11,11 @@ permissions:
   packages: write
 
 jobs:
-  release:
+  changesets:
     runs-on: ubuntu-latest
+    outputs:
+      published: ${{ steps.changesets.outputs.published }}
+      publishedPackages: ${{ steps.changesets.outputs.publishedPackages }}
     steps:
       -
         uses: actions/checkout@v4
@@ -26,5 +29,48 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       -
-        name: Publish
-        run: echo ${{ toJson(steps.changesets.outputs) }}
+        name: Debug outputs
+        run: echo "${{ toJson(steps.changesets.outputs) }}"
+  release-image:
+    runs-on: ubuntu-latest
+    needs: changesets
+    if: ${{ needs.changesets.outputs.published == 'true' }}
+    strategy:
+      matrix:
+        include: ${{ fromJson(needs.changesets.outputs.publishedPackages) }}
+    steps:
+      -
+        name: format package name
+        id: format-package-name
+        # package 名を変換する (@discordbot/xxx -> xxx)
+        run: echo "package=${OLD_PACKAGE/@discordbot\//}" >> "$GITHUB_OUTPUT"
+        env:
+          OLD_PACKAGE: ${{ matrix.package }}
+      -
+        name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/sun-yryr/discordbot-${{ steps.format-package-name.outputs.package }}
+          tags: |
+            type=semver,pattern={{version}},value=${{ matrix.version }}
+      -
+        name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Build and Push
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: ${{ steps.meta.outputs.tags}}
+          labels: ${{ steps.meta.outputs.labels }}
+          target: ${{ steps.format-package-name.outputs.package }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
