@@ -12,7 +12,7 @@
   "author": "sun-yryr <me@sun-yryr.com>",
   "packageManager": "pnpm@8.8.0",
   "engines": {
-    "node": "18"
+    "node": "20"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.2.2",
