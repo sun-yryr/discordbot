@@ -1,5 +1,12 @@
 # @sun-yryr/discordbot-downloader
 
+## 0.0.6
+
+### Patch Changes
+
+- a1c2d89: chore(deps): update pnpm to v8.9.2
+- 7926c66: chore(deps): update jauderho/yt-dlp docker tag to v2023.10.13
+
 ## 0.0.5
 
 ### Patch Changes
