@@ -1,11 +1,11 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.2.2/schema.json",
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "organizeImports": {
     "enabled": true
   },
   "formatter": {
     "enabled": true,
-    "indentSize": 4,
+    "indentWidth": 4,
     "indentStyle": "space"
   },
   "linter": {
@@ -22,8 +22,8 @@
         "useShorthandArrayType": "warn",
         "useSingleCaseStatement": "warn"
       },
-      "nursery": {
-        "noExcessiveComplexity": "warn"
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "warn"
       }
     }
   }
