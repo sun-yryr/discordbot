@@ -1,5 +1,5 @@
 import {
-    ApplicationCommandManager,
+    type ApplicationCommandManager,
     ApplicationCommandOptionType,
 } from "discord.js";
 
