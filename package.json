@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "scripts": {
-    "lint:gha": "eslint \".github/**/*.y*ml\"",
+    "lint:gha": "eslint",
     "ci:publish": "pnpm publish -r"
   },
   "author": "sun-yryr <me@sun-yryr.com>",
