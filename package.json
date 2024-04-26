@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "scripts": {
-    "lint:gha": "eslint \".github/**/*.y*ml\"",
+    "lint:gha": "eslint",
     "ci:publish": "pnpm publish -r"
   },
   "author": "sun-yryr <me@sun-yryr.com>",
@@ -18,8 +18,8 @@
     "@biomejs/biome": "^1.2.2",
     "@changesets/cli": "^2.26.2",
     "env-cmd": "^10.1.0",
-    "eslint": "^8.51.0",
-    "eslint-plugin-yml": "^1.10.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-yml": "^1.14.0",
     "yaml-eslint-parser": "^1.2.2"
   }
 }
