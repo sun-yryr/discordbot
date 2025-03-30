@@ -1,5 +1,14 @@
 # @sun-yryr/discordbot-downloader
 
+## 0.1.1
+
+### Patch Changes
+
+- c145129: chore(deps): update dependency @biomejs/biome to v1.9.4
+- 88d85a7: fix(deps): update dependency discord.js to v14.18.0
+- 7c94ed6: chore(deps): update pnpm to v8.15.9
+- 82cfd8d: chore(deps): update jauderho/yt-dlp docker tag to v2025
+
 ## 0.1.0
 
 ### Minor Changes
