@@ -10,7 +10,7 @@
     "ci:publish": "pnpm publish -r"
   },
   "author": "sun-yryr <me@sun-yryr.com>",
-  "packageManager": "pnpm@8.15.9",
+  "packageManager": "pnpm@10.8.1",
   "engines": {
     "node": "18"
   },
