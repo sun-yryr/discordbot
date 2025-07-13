@@ -15,6 +15,6 @@ export default [
         },
     },
     {
-        ignores: ["pnpm-lock.yaml"]
-    }
+        ignores: ["pnpm-lock.yaml"],
+    },
 ];

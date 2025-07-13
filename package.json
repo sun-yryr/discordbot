@@ -15,7 +15,7 @@
     "node": "18"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.0.0",
+    "@biomejs/biome": "^2.1.1",
     "@changesets/cli": "^2.26.2",
     "env-cmd": "^10.1.0",
     "eslint": "^9.0.0",
