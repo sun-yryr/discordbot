@@ -7,9 +7,9 @@
     "dev": "env-cmd -f ../../.env ts-node src/main.ts",
     "build": "tsc",
     "start": "node dist/main.js",
-    "check": "biome check ./src",
-    "fix": "biome check --apply-unsafe ./src",
-    "ci": "biome ci ./src"
+    "check": "biome check",
+    "fix": "biome check --write --unsafe",
+    "ci": "biome ci"
   },
   "devDependencies": {
     "@types/node": "^18.18.0",
