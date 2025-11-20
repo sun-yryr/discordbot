@@ -16,7 +16,7 @@ jobs:
           - discordbot-downloader
     steps:
       -
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       -
         name: Setup
         uses: ./.github/actions/setup
@@ -32,7 +32,7 @@ jobs:
           - discordbot-downloader
     steps:
       -
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       -
         uses: technote-space/get-diff-action@v6
         with:
